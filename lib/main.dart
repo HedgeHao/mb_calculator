@@ -28,6 +28,10 @@ class CalculatorState extends State<Calculator> {
   String result = '0';
 
   double _calculate() {
+    if (operator.isEmpty && right.isEmpty) {
+      return 0;
+    }
+
     double r = 0;
     double dLeft = double.tryParse(left) ?? 0;
     double dRight = double.tryParse(right) ?? 0;
@@ -130,6 +134,7 @@ class CalculatorState extends State<Calculator> {
         break;
       case '完成':
         _calculate();
+        operator = '';
         break;
       case 'C':
         _clear();
