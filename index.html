@@ -31,13 +31,105 @@
 
   <title>mb_calculator</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    .center {
+      width: 100px;
+      height: 100px;
+
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 100px;
+      right: 0;
+
+      margin: auto;
+    }
+
+    .dot-typing {
+      position: relative;
+      top: 50%;
+      left: -9999px;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: #f6a82b;
+      color: #f6a82b;
+      box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      -webkit-animation: dot-typing 1.5s infinite linear;
+      animation: dot-typing 1.5s infinite linear;
+    }
+
+    @-webkit-keyframes dot-typing {
+      0% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      16.667% {
+        box-shadow: 9984px -10px 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      33.333% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      50% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px -10px 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      66.667% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      83.333% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px -10px 0 0 #f6a82b;
+      }
+
+      100% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+    }
+
+    @keyframes dot-typing {
+      0% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      16.667% {
+        box-shadow: 9984px -10px 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      33.333% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      50% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px -10px 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      66.667% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+
+      83.333% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px -10px 0 0 #f6a82b;
+      }
+
+      100% {
+        box-shadow: 9984px 0 0 0 #f6a82b, 9999px 0 0 0 #f6a82b, 10014px 0 0 0 #f6a82b;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="center">
+    <div class="dot-typing"> </div>
+  </div>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    var serviceWorkerVersion = '1449102825';
+    var serviceWorkerVersion = '3896975427';
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
