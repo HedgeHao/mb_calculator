@@ -25,7 +25,7 @@ class Calculator extends StatefulWidget {
 }
 
 class CalculatorState extends State<Calculator> {
-  String result = '';
+  String result = '0';
 
   double _calculate() {
     double r = 0;
@@ -41,7 +41,7 @@ class CalculatorState extends State<Calculator> {
     if (operator == '+') {
       r = dLeft + dRight;
     } else if (operator == '-') {
-      r = dLeft + dRight;
+      r = dLeft - dRight;
     } else if (operator == '*') {
       r = dLeft * dRight;
     } else if (operator == '/') {
@@ -51,7 +51,7 @@ class CalculatorState extends State<Calculator> {
     if (r - r.toInt() == 0) {
       left = r.toInt().toString();
     } else {
-      left = r.toString();
+      left = r.toStringAsFixed(2);
     }
 
     setState(() {
@@ -66,7 +66,7 @@ class CalculatorState extends State<Calculator> {
   _operator(String o) {
     if (left.isEmpty) left = '0';
 
-    if (operator.isEmpty) {
+    if (operator.isEmpty || (operator.isNotEmpty && right.isEmpty)) {
       operator = o;
     } else if (right.isNotEmpty) {
       _calculate();
@@ -86,9 +86,9 @@ class CalculatorState extends State<Calculator> {
   _show() {
     String s = '';
     if (right.isNotEmpty) {
-      s = '$left$operator$right';
+      s = '$left $operator $right';
     } else if (right.isEmpty && operator.isNotEmpty) {
-      s = '$left$operator';
+      s = '$left $operator';
     } else if (left.isNotEmpty) {
       s = left;
     } else {
@@ -157,9 +157,12 @@ class CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(result, style: const TextStyle(fontSize: 28)),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CalculatorButton('/', onclick),
             CalculatorButton('*', onclick),
@@ -168,6 +171,7 @@ class CalculatorState extends State<Calculator> {
           ],
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CalculatorButton('7', onclick),
             CalculatorButton('8', onclick),
@@ -176,6 +180,7 @@ class CalculatorState extends State<Calculator> {
           ],
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CalculatorButton('4', onclick),
             CalculatorButton('5', onclick),
@@ -184,6 +189,7 @@ class CalculatorState extends State<Calculator> {
           ],
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CalculatorButton('1', onclick),
             CalculatorButton('2', onclick),
@@ -192,11 +198,12 @@ class CalculatorState extends State<Calculator> {
           ],
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CalculatorButton('.', onclick),
             CalculatorButton('0', onclick),
             CalculatorButton('00', onclick),
-            CalculatorButton('完成', onclick),
+            CalculatorButton('完成', onclick, color: Colors.orange),
           ],
         )
       ],
@@ -207,19 +214,22 @@ class CalculatorState extends State<Calculator> {
 class CalculatorButton extends StatelessWidget {
   final Function(String key) onclick;
   final String label;
+  final Color? color;
 
-  const CalculatorButton(this.label, this.onclick, {Key? key}) : super(key: key);
+  const CalculatorButton(this.label, this.onclick, {this.color, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black)),
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.black)),
         onPressed: () {
           onclick(label);
         },
         child: Text(
           label,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: color ?? Colors.white),
         ));
   }
 }
