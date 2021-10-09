@@ -145,9 +145,19 @@ class CalculatorState extends State<Calculator> {
         break;
       default:
         if (left.isNotEmpty && operator.isEmpty) {
-          left += key;
+          if (key == '.' && left.contains('.')) {
+            // skip
+          } else {
+            left += key;
+          }
         } else if (right.isNotEmpty || (right.isEmpty && operator.isNotEmpty)) {
-          right += key;
+          if (key == '.' && right.isEmpty) {
+            right += '0.';
+          } else if (key == '.' && right.contains('.')) {
+            // skip
+          } else {
+            right += key;
+          }
         } else if (left == '0') {
           left = key;
         } else {
