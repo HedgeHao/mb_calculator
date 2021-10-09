@@ -244,7 +244,7 @@ class CalculatorButton extends StatelessWidget {
         },
         child: Text(
           label,
-          style: TextStyle(color: color ?? Colors.white),
+          style: TextStyle(color: color ?? Colors.white, inherit: false),
         ));
   }
 }
